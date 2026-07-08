@@ -1,0 +1,26 @@
+{
+  "name": "nuestro-aniversario",
+  "version": "1.0.0",
+  "description": "Un sitio web especial para celebrar nuestro aniversario",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "anniversary",
+    "express",
+    "love"
+  ],
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.10.3",
+    "nodemon": "^3.1.3"
+  }
+}
