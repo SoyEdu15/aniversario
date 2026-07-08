@@ -1,61 +1,152 @@
-# Nuestro Aniversario
+# 💖 Nuestro Aniversario
 
-Este proyecto es una página web especial para celebrar un aniversario con una experiencia visual y emocional: hero section, video, galería, contador, carta interactiva y motivos románticos.
+<p align="center">
+  Una experiencia web romántica diseñada para celebrar momentos especiales de una forma única, interactiva y memorable.
+</p>
 
-## Características
+<p align="center">
+  <img src="https://img.shields.io/badge/Estado-Activo-success?style=for-the-badge">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/GitHub%20Pages-Deploy-blue?style=for-the-badge&logo=github">
+</p>
 
-- Diseño responsive y elegante
-- Hero section con animaciones suaves
-- Video principal con portada
-- Galería dinámica de imágenes y videos
-- Contador de tiempo juntos
-- Carta interactiva con efecto de sobre
-- Generador de razones románticas
+---
 
-## Estructura del proyecto
+## ✨ Descripción
 
-- `index.html`: estructura principal de la landing page
-- `styles.css`: estilos visuales y responsive
-- `script.js`: interactividad y galería dinámica
-- `server.js`: servidor local para pruebas
-- `img/`: imágenes del proyecto
-- `video/`: vídeos del proyecto
+**Nuestro Aniversario** es una landing page romántica creada para celebrar una fecha especial mediante una experiencia visual emotiva. Combina animaciones suaves, contenido multimedia y elementos interactivos para crear un recuerdo inolvidable.
 
-## Ejecutar localmente
+---
 
-1. Instala dependencias:
-   ```bash
-   npm install
-   ```
-2. Inicia el servidor local:
-   ```bash
-   npm start
-   ```
-3. Abre en tu navegador:
-   ```text
-   http://localhost:3000
-   ```
+## 🌹 Características
 
-## Publicar en GitHub Pages
+### 🎬 Experiencia Visual
 
-El proyecto ya está preparado para desplegarse en GitHub Pages.
+* Hero Section con animaciones elegantes.
+* Diseño moderno y totalmente responsive.
+* Efectos visuales suaves y atractivos.
 
-### Opción recomendada: despliegue automático
+### 🎥 Multimedia
 
-1. Sube este repositorio a GitHub.
-2. En tu repositorio, ve a Settings > Pages.
-3. En Source selecciona "GitHub Actions".
-4. El workflow incluido en `.github/workflows/deploy-pages.yml` se encargará de publicar la página automáticamente cada vez que hagas push a la rama `main`.
+* Video principal con portada personalizada.
+* Galería dinámica de imágenes y videos.
+* Visualización optimizada para diferentes dispositivos.
 
-### URL pública
+### ❤️ Elementos Interactivos
 
-Una vez desplegado, GitHub Pages te dará una URL similar a:
+* Contador de tiempo juntos.
+* Carta romántica interactiva con efecto de sobre.
+* Generador de razones románticas aleatorias.
+
+### 📱 Compatibilidad
+
+* Adaptable a dispositivos móviles.
+* Compatible con navegadores modernos.
+* Carga rápida y estructura optimizada.
+
+---
+
+## 📂 Estructura del Proyecto
 
 ```text
-https://<tu-usuario>.github.io/<nombre-del-repositorio>/
+📦 Nuestro-Aniversario
+├── 📄 index.html
+├── 🎨 styles.css
+├── ⚙️ script.js
+├── 🚀 server.js
+├── 📁 img/
+├── 📁 video/
+├── 📁 .github/
+│   └── workflows/
+│       └── deploy-pages.yml
+└── 📄 .nojekyll
 ```
 
-## Notas
+### Archivos principales
 
-- La página es completamente estática, por lo que GitHub Pages la puede servir sin problema.
-- Se agregó el archivo `.nojekyll` para evitar interferencias con el despliegue.
+| Archivo      | Descripción                       |
+| ------------ | --------------------------------- |
+| `index.html` | Estructura principal de la página |
+| `styles.css` | Estilos y diseño responsive       |
+| `script.js`  | Funcionalidades interactivas      |
+| `server.js`  | Servidor local para pruebas       |
+| `img/`       | Recursos de imágenes              |
+| `video/`     | Recursos multimedia               |
+
+---
+
+## 🚀 Instalación y Ejecución
+
+### 1️⃣ Clonar el repositorio
+
+```bash
+git clone https://github.com/tu-usuario/tu-repositorio.git
+```
+
+### 2️⃣ Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3️⃣ Ejecutar el servidor
+
+```bash
+npm start
+```
+
+### 4️⃣ Abrir en el navegador
+
+```text
+http://localhost:3000
+```
+
+---
+
+## 🌍 Despliegue en GitHub Pages
+
+El proyecto está preparado para publicarse automáticamente mediante GitHub Pages.
+
+### Configuración
+
+1. Subir el proyecto a GitHub.
+2. Abrir **Settings → Pages**.
+3. Seleccionar **GitHub Actions** como fuente.
+4. Realizar un push a la rama `main`.
+
+El workflow incluido en:
+
+```text
+.github/workflows/deploy-pages.yml
+```
+
+se encargará del despliegue automático.
+
+---
+
+## 🔗 URL Pública
+
+Una vez desplegado, la página estará disponible en una dirección similar a:
+
+```text
+https://tu-usuario.github.io/nombre-del-repositorio/
+```
+
+---
+
+## 📝 Notas
+
+* Proyecto completamente estático.
+* Compatible con GitHub Pages sin configuraciones adicionales.
+* Incluye archivo `.nojekyll` para evitar conflictos durante el despliegue.
+* Fácil de personalizar con nuevas fotos, videos y mensajes.
+
+---
+
+## 💕 Hecho con Amor
+
+> "Los momentos especiales merecen una forma especial de ser recordados."
+
+Desarrollado para celebrar una historia única y convertir recuerdos en una experiencia digital inolvidable.
