@@ -12,18 +12,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lista de razones románticas
     const razones = [
-        "Porque sabes cómo hacerme sonreír incluso en los días más difíciles. 😊",
-        "Por tu paciencia infinita y tu forma tan tierna de apoyarme en mis metas. 🤝",
-        "Por la manera en la que me miras, haciéndome sentir la persona más afortunada del mundo. ✨",
-        "Porque cada pequeño momento ordinario a tu lado se convierte en una gran aventura. ✈️",
-        "Por tu inteligencia y por las conversaciones profundas que duran hasta el amanecer. 💬",
-        "Porque me inspiras a ser una mejor versión de mí mismo todos los días. 🌟",
-        "Por tus abrazos cálidos que tienen el poder de curar cualquier preocupación. 🫂",
-        "Porque amo cómo te ríes de mis bromas tontas y cómo compartimos los mismos sueños. 💖",
-        "Por ser mi refugio seguro y mi persona favorita en todo el universo. 🏠",
-        "Porque el amor que siento por ti crece con cada latido de mi corazón. 💓",
-        "Por tu forma tan linda de cuidar de mí y de los detalles más pequeños. 🌸",
-        "Porque simplemente siendo tú, haces que mi mundo entero sea infinitamente mejor. 🌍"
+        "Porque sabes cómo hacerme sonreír incluso en los días más difíciles.",
+        "Por apoyarme en mis metas.",
+        "Por la manera en la que me miras✨",
+        "Porque cada pequeño momento",
+        "Por tu inteligencia y las cosas que me enseñas",
+        "Porque me inspiras a ser una mejor versión de mí mismo todos los días.",
+        "Por tus abrazos que me han ayudado muchas veces a sentirme seguro y amado.",
+        "Porque amo cómo te ríes y tus chistes ",
+        "Por ser mi Solecito",
+        "Porque contigo senti y siento amor en susestado mas puro",
+        "Por tu forma tan linda de cuidar de mí",
+        "Porque con solo existir haces de este mundo un lugar mejor ",
+        "Porque me has demostrado que asi tenga poco o mucho vas a estar para mi",
+        "Por ayudarme a conetar mi vida espiritual",
+        "Por hacerme sentir que casarme si es una meta",
+        "Por defenderme cuando no estoy",
+        "Por darme esa seguridad y el luagar de tu novio/futuro esposo ante los demas"
     ];
 
     // --- 2. LLUVIA DE CORAZONES FLOATING ---
