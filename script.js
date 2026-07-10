@@ -239,54 +239,121 @@ setInterval(createStar, 1500);
         'multimedia1.jpg','multimedia2.jpg','multimedia3.MP4','multimedia4.jpg','multimedia5.MP4','multimedia6.jpg','multimedia7.MP4','multimedia8.jpg','multimedia9.MP4','multimedia10.jpg','multimedia11.MP4','multimedia12.jpg','multimedia13.MP4','multimedia14.jpg','multimedia15.MP4','multimedia16.jpg','multimedia17.MP4','multimedia18.jpg','multimedia19.jpg','multimedia20.jpg','multimedia21.MP4','multimedia22.jpg','multimedia23.jpg','multimedia24.jpg','multimedia25.jpg','multimedia26.jpg','multimedia27.jpg','multimedia28.MP4','multimedia29.jpg','multimedia30.MP4'
     ];
 
-    const gallery = document.querySelector('.gallery');
-    if (gallery) {
+    const gallery = document.getElementById('gallery');
+    const galleryLoadMoreBtn = document.getElementById('galleryLoadMore');
+    if (gallery && galleryLoadMoreBtn) {
+        const initialLimit = window.innerWidth <= 480 ? 6 : window.innerWidth <= 768 ? 8 : 12;
+        const batchSize = window.innerWidth <= 480 ? 4 : 6;
+        let renderedCount = 0;
+
         function resizeItem(item) {
             const rowHeight = parseInt(window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows'));
             const rowGap = parseInt(window.getComputedStyle(gallery).getPropertyValue('gap'));
             const content = item.querySelector('.polaroid-img-wrapper');
+            if (!content) return;
             const contentHeight = content.getBoundingClientRect().height;
             const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
             item.style.gridRowEnd = `span ${rowSpan}`;
         }
 
-        galleryFiles.forEach((file, idx) => {
-            const polaroid = document.createElement('figure');
-            polaroid.className = 'polaroid';
+        function loadImage(img) {
+            if (!img || img.dataset.loaded === 'true') return;
+            img.dataset.loaded = 'true';
+            const fullSrc = img.dataset.fullSrc;
+            if (!fullSrc) return;
+            const tempImage = new Image();
+            tempImage.src = fullSrc;
+            tempImage.onload = () => {
+                img.src = fullSrc;
+                requestAnimationFrame(() => resizeItem(img.closest('.polaroid')));
+            };
+        }
 
-            const wrapper = document.createElement('div');
-            wrapper.className = 'polaroid-img-wrapper';
+        const mediaObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const target = entry.target;
+                if (target.tagName === 'IMG') {
+                    loadImage(target);
+                }
+                observer.unobserve(target);
+            });
+        }, { rootMargin: '120px 0px', threshold: 0.05 });
 
-            const lower = file.toLowerCase();
-            const ext = lower.substring(lower.lastIndexOf('.'));
-            const base = file.substring(0, file.lastIndexOf('.'));
+        function addGalleryItems(startIndex, count) {
+            const endIndex = Math.min(startIndex + count, galleryFiles.length);
+            for (let i = startIndex; i < endIndex; i += 1) {
+                const file = galleryFiles[i];
+                const polaroid = document.createElement('figure');
+                polaroid.className = 'polaroid';
 
-            if (ext === '.mp4' || ext === '.webm') {
-                const video = document.createElement('video');
-                video.setAttribute('controls', '');
-                video.setAttribute('preload', 'metadata');
-                video.src = `${galleryVideosPath}/${file}`;
-                const source = document.createElement('source');
-                source.src = `${galleryVideosPath}/${file}`;
-                source.type = `video/${ext.slice(1).toLowerCase()}`;
-                video.appendChild(source);
-                wrapper.appendChild(video);
+                const wrapper = document.createElement('div');
+                wrapper.className = 'polaroid-img-wrapper';
 
-                video.addEventListener('loadedmetadata', () => resizeItem(polaroid));
-                video.addEventListener('loadeddata', () => resizeItem(polaroid));
-            } else {
-                const img = document.createElement('img');
-                img.src = `${galleryImagesPath}/${file}`;
-                img.alt = `Recuerdo ${idx + 1}`;
-                img.loading = 'lazy';
-                wrapper.appendChild(img);
+                const lower = file.toLowerCase();
+                const ext = lower.substring(lower.lastIndexOf('.'));
+                const baseName = file.substring(0, file.lastIndexOf('.'));
+                const thumbName = file.replace(/\.(jpe?g|png|webp)$/i, '.jpg');
+                const thumbnailForVideo = ext === '.mp4' || ext === '.webm'
+                    ? `${baseName.replace(/\d+$/, '')}${parseInt(baseName.match(/\d+$/)?.[0] || '0', 10) - 1}.jpg`
+                    : thumbName;
 
-                img.addEventListener('load', () => resizeItem(polaroid));
+                if (ext === '.mp4' || ext === '.webm') {
+                    const video = document.createElement('video');
+                    video.className = 'polaroid-media';
+                    video.setAttribute('controls', '');
+                    video.setAttribute('playsinline', '');
+                    video.setAttribute('preload', 'metadata');
+                    video.dataset.src = `${galleryVideosPath}/${file}`;
+                    video.poster = `${galleryImagesPath}/thumbs/${thumbnailForVideo}`;
+
+                    const overlay = document.createElement('button');
+                    overlay.className = 'video-play-overlay';
+                    overlay.type = 'button';
+                    overlay.innerHTML = '▶';
+
+                    overlay.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        if (!video.dataset.loaded === true) {
+                            video.dataset.loaded = 'true';
+                            video.src = video.dataset.src;
+                            video.load();
+                        }
+                        video.play().catch(() => {});
+                    });
+
+                    wrapper.appendChild(video);
+                    wrapper.appendChild(overlay);
+
+                    video.addEventListener('loadedmetadata', () => resizeItem(polaroid));
+                    video.addEventListener('loadeddata', () => resizeItem(polaroid));
+                } else {
+                    const img = document.createElement('img');
+                    img.className = 'polaroid-media';
+                    img.alt = `Recuerdo ${i + 1}`;
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                    img.src = `${galleryImagesPath}/thumbs/${thumbName}`;
+                    img.dataset.fullSrc = `${galleryImagesPath}/${file}`;
+                    wrapper.appendChild(img);
+
+                    img.addEventListener('load', () => resizeItem(polaroid));
+                    mediaObserver.observe(img);
+                }
+
+                polaroid.appendChild(wrapper);
+                gallery.appendChild(polaroid);
+                requestAnimationFrame(() => resizeItem(polaroid));
             }
 
-            polaroid.appendChild(wrapper);
-            gallery.appendChild(polaroid);
-            resizeItem(polaroid);
+            renderedCount = endIndex;
+            galleryLoadMoreBtn.style.display = renderedCount >= galleryFiles.length ? 'none' : 'inline-flex';
+        }
+
+        addGalleryItems(0, initialLimit);
+        galleryLoadMoreBtn.addEventListener('click', () => {
+            addGalleryItems(renderedCount, batchSize);
         });
 
         window.addEventListener('resize', () => {
